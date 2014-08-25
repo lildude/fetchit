@@ -6,7 +6,6 @@ require "bundler/setup"
 #require "httmultiparty"
 require "httparty"
 require "base64"
-require "time"
 require "yaml"
 
 CONFIG = YAML.load_file("config.yml") unless defined? CONFIG
