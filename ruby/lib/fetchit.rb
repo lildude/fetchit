@@ -12,7 +12,9 @@ CONFIG = YAML.load_file("config.yml") unless defined? CONFIG
 
 class FetchEveryone
   include HTTParty
-  #base_uri = "https://api.fetcheveryone.com" # This defaults to http for some reason :-( so can't use
+  # Debug HTTParty
+  #debug_output
+
   base_uri "https://api.fetcheveryone.com"
 
   def initialize(k, s)
