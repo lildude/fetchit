@@ -35,8 +35,26 @@ class FetchEveryone
     puts response.body
   end
 
+  def putResource(resource, options = nil)
+    options[:uid] = CONFIG['uid']  # TODO: Need to wait for the API to progamatically provide this. Until then, we set it in the config
+    options[:method].upcase!
+    options[:category].upcase!
+    gz = self.gzdeflate(File.read("#{options[:data]}"))
+    options[:data] = CGI::escape(gz)
+    response = self.class.post(
+      "/api.php?request=#{resource}",
+      headers: {'Authorization' => "Bearer #{@access_token}", 'Accept' => 'application/json'},
+      body: options
+    )
+  end
+
+  def gzdeflate (s)
+    Zlib::Deflate.new().deflate(s, Zlib::FINISH)
+  end
 end
 
 fe = FetchEveryone.new("#{CONFIG['api_key']}", "#{CONFIG['api_secret']}")
-#fe.getResource("forum/threads")
-fe.getResource("forum/threads", {category: "training", items: 5})
+#puts fe.getResource("forum/threads")
+#puts fe.getResource("forum/threads", {category: "training", items: 5})
+#puts fe.putResource("training/import", {method: "tcx", category: "r", data: "/Users/lildude/Library/Application Support/Garmin/GarminConnect/Unknown ANT Device-3834404765/Upload/FitnessHistory/2014-08-23-082929.TCX"})
+puts fe.getResource("training/entries", {uid: CONFIG['uid'], mindate: "2014-08-01", maxdate: "2014-08-05"})
