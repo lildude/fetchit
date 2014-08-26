@@ -32,7 +32,6 @@ class FetchEveryone
       "/api.php?request=#{resource}#{encoded_opts}",
       headers: {'Authorization' => "Bearer #{@access_token}", 'Content-type' => 'application/json'},
     )
-    puts response.body
   end
 
   def putResource(resource, options = nil)
