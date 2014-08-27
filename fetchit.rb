@@ -50,6 +50,8 @@ class FetchEveryone
   end
 end
 
+#---:[ Play from here onward ]:---#
+
 fe = FetchEveryone.new("#{CONFIG['api_key']}", "#{CONFIG['api_secret']}")
 #puts fe.getResource("forum/threads")
 #puts fe.getResource("forum/threads", {category: "training", items: 5})
