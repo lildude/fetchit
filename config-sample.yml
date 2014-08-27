@@ -1,5 +1,8 @@
+# Rename me to config.yml
+#
 # Sign in to FetchEveryone and visit http://www.fetcheveryone.com/api-request-keys.php to obtain your key & secret
 api_key:
 api_secret:
+
 # Get your UID - we could really do with a way of obtaining this programmatically.
 uid:
