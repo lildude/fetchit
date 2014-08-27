@@ -1,9 +1,5 @@
-#!/usr/bin/env ruby
-#
 require "rubygems"
 require "bundler/setup"
-
-#require "httmultiparty"
 require "httparty"
 require "base64"
 require "yaml"
@@ -35,7 +31,7 @@ class FetchEveryone
   end
 
   def putResource(resource, options = nil)
-    options[:uid] = CONFIG['uid']  # TODO: Need to wait for the API to progamatically provide this. Until then, we set it in the config
+    options[:uid] = CONFIG['uid']
     options[:method].upcase!
     options[:category].upcase!
     gz = self.gzdeflate(File.read("#{options[:data]}"))
